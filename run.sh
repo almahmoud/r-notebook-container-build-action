@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 IMAGE_NAME="$1"
 IMAGE_TAG="$2"
@@ -6,7 +6,7 @@ BASE_IMAGE="$3"
 BASE_TAG="$4"
 
 # exit on error
-set -ex
+set -e
 
 error() {
   exit 1
@@ -16,8 +16,8 @@ error() {
 if [ -f "./Dockerfile" ]; then
     echo "Using existing Dockerfile from notebook repository."
 else 
-    cp /notebook-Dockerfile ./Dockerfile || error
     echo "Using default Dockerfile from action repository."
+    cp /notebook-Dockerfile ./Dockerfile || error
 fi
 
 echo "Building container image with name $IMAGE_NAME:$IMAGE_TAG"
