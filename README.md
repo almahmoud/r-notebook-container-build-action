@@ -20,8 +20,8 @@ jobs:
       - uses: actions/checkout@master
       - uses: almahmoud/r-notebook-container-build-action@master
         with:
-		  image-name: almahmoud/my-r-notebook
-		  image-tag: latest
-		  base-image: "bioconductor/bioconductor_docker"
-		  base-tag: "latest"
+          image-name: almahmoud/my-r-notebook
+          image-tag: latest
+          base-image: "bioconductor/bioconductor_docker"
+          base-tag: "latest"
 ```
