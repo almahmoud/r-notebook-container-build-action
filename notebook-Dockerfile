@@ -6,6 +6,4 @@ WORKDIR /home/rstudio
 
 COPY --chown=rstudio:rstudio . /home/rstudio/
 
-RUN Rscript -e "BiocManager::install(remotes::local_package_deps(dependencies=TRUE))"
-
-RUN Rscript -e 'bookdown::render_book("index.Rmd")'
+RUN Rscript -e "BiocManager::install(remotes::local_package_deps(dependencies=TRUE))" && cd inst/book && Rscript -e 'bookdown::render_book("index.Rmd")'
