@@ -1,5 +1,4 @@
 FROM docker:latest
-USER root
 
 COPY run.sh /run.sh
 COPY notebook-Dockerfile /notebook-Dockerfile
