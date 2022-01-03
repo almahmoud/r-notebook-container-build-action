@@ -1,0 +1,28 @@
+name: Build and push
+description: Build and push container image
+
+inputs:
+  image-name:
+    description: Repository for container image name
+    required: true
+  image-tag:
+    description: Tag for container image name
+    required: false
+    default: 'latest'
+  base-image:
+    description: Base image to use for notebook container image
+    required: false
+    default: "bioconductor/bioconductor_docker"
+  base-tag:
+    description: Tag to use for base container image
+    required: false
+    default: "latest"
+
+runs:
+  using: 'docker'
+  image: 'action-Dockerfile'
+  args:
+    - ${{ inputs.image-name }}
+    - ${{ inputs.image-tag }}
+    - ${{ inputs.base-image }}
+    - ${{ inputs.base-tag }}

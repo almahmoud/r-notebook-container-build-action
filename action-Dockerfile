@@ -1,0 +1,6 @@
+FROM docker:latest
+
+COPY run.sh /run.sh
+COPY notebook-Dockerfile /notebook-Dockerfile
+
+ENTRYPOINT ["/run.sh"]

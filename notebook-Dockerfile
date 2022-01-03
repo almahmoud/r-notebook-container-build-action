@@ -1,0 +1,10 @@
+ARG baseimage="bioconductor/bioconductor_docker"
+ARG basetag=latest
+FROM $baseimage:$basetag
+
+WORKDIR /home/rstudio
+
+COPY --chown=rstudio:rstudio . /home/rstudio/
+
+RUN Rscript -e "BiocManager::install(remotes::local_package_deps(dependencies=TRUE))"
+
