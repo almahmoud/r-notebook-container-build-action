@@ -6,7 +6,7 @@ BASE_IMAGE="$3"
 BASE_TAG="$4"
 
 # exit on error
-set -e
+set -ex
 
 error() {
   exit 1
@@ -21,4 +21,4 @@ else
 fi
 
 echo "Building container image with name $IMAGE_NAME:$IMAGE_TAG"
-docker build . -t $IMAGE_NAME:$IMAGE_TAG --build-arg baseimage="$BASE_IMAGE"--build-arg basetag="$BASE_TAG" || error
+docker build . -t "$IMAGE_NAME:$IMAGE_TAG" --build-arg baseimage="$BASE_IMAGE" --build-arg basetag="$BASE_TAG" || error
