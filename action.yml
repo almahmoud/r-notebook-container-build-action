@@ -17,6 +17,11 @@ inputs:
     description: Tag to use for base container image
     required: false
     default: "latest"
+  build-command:
+    description: Build command for notebook Dockerfile
+    required: false
+    default: |
+        Rscript -e "BiocManager::install(remotes::local_package_deps(dependencies=TRUE))" && cd inst/book && Rscript -e 'bookdown::render_book("index.Rmd")'
 
 runs:
   using: 'docker'
@@ -26,3 +31,4 @@ runs:
     - ${{ inputs.image-tag }}
     - ${{ inputs.base-image }}
     - ${{ inputs.base-tag }}
+    - ${{ inputs.build-command}}

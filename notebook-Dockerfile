@@ -1,9 +1,10 @@
 ARG baseimage="bioconductor/bioconductor_docker"
 ARG basetag=latest
 FROM $baseimage:$basetag
+ARG buildcommand
 
 WORKDIR /home/rstudio
 
 COPY --chown=rstudio:rstudio . /home/rstudio/
 
-RUN Rscript -e "BiocManager::install(remotes::local_package_deps(dependencies=TRUE))" && cd inst/book && Rscript -e 'bookdown::render_book("index.Rmd")'
+RUN sh -c "$buildcommand"

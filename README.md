@@ -18,10 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - uses: almahmoud/r-notebook-container-build-action@master
+      - uses: almahmoud/r-notebook-container-build-action@main
         with:
           image-name: almahmoud/my-r-notebook
           image-tag: latest
           base-image: "bioconductor/bioconductor_docker"
           base-tag: "latest"
+          build-command: |
+              Rscript -e "BiocManager::install(remotes::local_package_deps(dependencies=TRUE))" && cd inst/book && Rscript -e 'bookdown::render_book("index.Rmd")'
 ```
